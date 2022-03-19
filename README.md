@@ -1,3 +1,3 @@
-# Rock-Paper-Scissors
+# [Rock-Paper-Scissors](https://leulyk.github.io/rock-paper-scissors)
 
-> A simple console bases rock-paper-scissors game built with JavaScript.
+> A simple console based rock-paper-scissors game built with JavaScript.
