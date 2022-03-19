@@ -33,5 +33,3 @@ function game () {
       computerPlay()));
   }
 }
-
-game();
