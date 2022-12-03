@@ -1,35 +1,35 @@
 'use strict';
 
-function computerPlay () {
-  const options = ['Rock', 'Paper', 'Scissors'];
-  return options[Math.floor(Math.random() * options.length)];
+let buttons = document.querySelectorAll('button');
+
+Array.from(buttons).forEach((button) => {
+    button.addEventListener('click', (ev) => playRound(ev.currentTarget.id, computerPlay()));
+});
+
+function computerPlay() {
+    const options = ['Rock', 'Paper', 'Scissors'];
+    return options[Math.floor(Math.random() * options.length)];
 }
 
-function playRound (playerSelection, computerSelection) {
-  const pSelection = playerSelection.toLowerCase();
-  const cSelection = computerSelection.toLowerCase();
+function playRound(playerSelection, computerSelection) {
+    const pSelection = playerSelection.toLowerCase();
+    const cSelection = computerSelection.toLowerCase();
+    let result = document.querySelector('#result');
 
-  if (['rock', 'paper', 'scissors'].includes(pSelection)) {
     const isWin = ((pSelection === 'paper') && (cSelection === 'rock')) ||
-                  ((pSelection === 'rock') && (cSelection === 'scissors')) ||
-                  ((pSelection === 'scissors') && (cSelection === 'paper'));
+        ((pSelection === 'rock') && (cSelection === 'scissors')) ||
+        ((pSelection === 'scissors') && (cSelection === 'paper'));
+
+    console.log(isWin);
 
     if (isWin) {
-      return `You Win!!! ${pSelection} beats ${cSelection}.`;
+        result.textContent = `You Win!!! ${pSelection} beats ${cSelection}.`;
+        result.style.color = 'darkslateblue';
+    } else if (pSelection === cSelection) {
+        result.textContent = 'Draw!!!';
+        result.style.color = 'black';
     } else {
-      if (pSelection === cSelection) {
-        return 'Draw!!!';
-      }
-      return `You Lose!!! ${cSelection} beats ${pSelection}.`;
+        result.textContent = `You Lose!!! ${cSelection} beats ${pSelection}.`;
+        result.style.color = 'darkred';
     }
-  } else {
-    return 'Invalid input!!!';
-  }
-}
-
-function game () {
-  for (let i = 1; i <= 5; ++i) {
-    console.log(playRound(window.prompt('Enter rock, paper, or scissors: '),
-      computerPlay()));
-  }
 }
